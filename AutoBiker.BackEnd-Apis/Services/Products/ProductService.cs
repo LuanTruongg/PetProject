@@ -73,5 +73,10 @@ namespace AutoBiker.BackEnd_Apis.Services.Products
                 return new ProductResult($"Error: {ex.Message}");
             }
         }
-    }
+
+		public async Task<List<Product>> GetListByBrandNameAsync(string Keyword)
+		{
+			return await _productRepository.GetListByBrandNameAsync(Keyword);
+		}
+	}
 }

@@ -45,9 +45,20 @@ namespace AutoBiker.BackEnd_Apis.Controllers
             var result = _mapper.Map<List<Product>, List<ProductResource>>(products);
             return Ok(result);
         }
+		[HttpGet("brand/{brandName}")]
+		public async Task<IActionResult> GetListByBrandName(string brandName)
+		{
+			var products = await _productService.GetListByBrandNameAsync(brandName);
+			if (products == null)
+			{
+				return NotFound();
+			}
+			var result = _mapper.Map<List<Product>, List<ProductResource>>(products);
+			return Ok(result);
+		}
 
-        // GET api/<ProductsController>/5
-        [HttpGet("{id}")]
+		// GET api/<ProductsController>/5
+		[HttpGet("{id}")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetById(int id)
         {

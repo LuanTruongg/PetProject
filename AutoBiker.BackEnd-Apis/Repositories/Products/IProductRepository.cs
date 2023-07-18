@@ -6,7 +6,8 @@ namespace AutoBiker.BackEnd_Apis.Repositories.Products
     {
         Task<List<Product>> ListAsync();
         Task<List<Product>> GetListByNameAsync(string keyword);
-        Task<Product> GetByIdAsync(int id);
+		Task<List<Product>> GetListByBrandNameAsync(string keyword);
+		Task<Product> GetByIdAsync(int id);
         Task AddAsync(Product product);
         Task<Product> EditAsync(Product product);
 

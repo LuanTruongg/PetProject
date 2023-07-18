@@ -47,5 +47,14 @@ namespace AutoBiker.BackEnd_Apis.Repositories.Products
             _context.Products.Remove(product);
             _context.SaveChanges();
         }
-    }
+
+		public async Task<List<Product>> GetListByBrandNameAsync(string keyword)
+		{
+			var query = from p in _context.Products
+                        join b in _context.Brands on p.BrandId equals b.Id
+                        where p.BrandId == keyword
+                        select p;
+            return await query.ToListAsync();
+		}
+	}
 }
